@@ -1,0 +1,25 @@
+{
+	"name": "NuxtJS DevContainer",
+
+	"dockerComposeFile": [
+		"./docker-compose.yaml",
+		"./docker-compose.dev.yaml"
+	],
+
+	"service": "nuxt",
+	"workspaceFolder": "/app",
+
+	
+	"forwardPorts": [
+		3000
+	],
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vue.volar",
+				"dbaeumer.vscode-eslint"
+			]
+		}
+	}
+}
