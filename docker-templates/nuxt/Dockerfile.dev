@@ -1,0 +1,16 @@
+#Base Image
+FROM node:21-alpine
+
+# Set Working Directory
+WORKDIR /app
+
+# Copy Package Files
+COPY package*.json ./  
+
+RUN npm install -g pnpm
+# Install Dependencies 
+RUN pnpm install
+
+# Expose Server Port
+EXPOSE 3000
+CMD [ "pnpm", "run", "dev", "--no-fork" ]
