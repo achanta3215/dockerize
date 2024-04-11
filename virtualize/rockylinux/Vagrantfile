@@ -15,11 +15,12 @@ Vagrant.configure("2") do |config|
   config.vm.box = "rockylinux/9"
   config.disksize.size = '40GB'
   config.vm.disk :disk, size: "40GB", primary: true
-  config.vm.provision "shell", path: "init.sh"
-
-  # Recurring actions
-  config.vm.provision "shell", path: "recurring.sh"
-  # Disable automatic box update checking. If you disable this, then
+  config.vm.provision "shell", inline: <<-SHELL
+    cat /home/vagrant/.ssh/id_ed25519.pub >> /home/vagrant/.ssh/authorized_keys
+    chmod 700 /home/vagrant/.ssh
+    chmod 600 /home/vagrant/.ssh/authorized_keys
+  SHELL
+    # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
   # config.vm.box_check_update = false
